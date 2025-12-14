@@ -1,207 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Love 💝</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love 💝</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins', sans-serif;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.container{text-align:center;padding:20px;}
+.welcome{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;
+  color:#fff;
+  margin-bottom:30px;
+  animation:fadeIn 2s;
+}
+.gifts{
+  display:flex;
+  gap:25px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.gift{
+  width:120px;height:120px;
+  background:#fff;
+  border-radius:20px;
+  font-size:3rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  animation:float 3s ease-in-out infinite;
+  box-shadow:0 15px 30px rgba(0,0,0,.25);
+}
+.gift:hover{transform:scale(1.1);}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+.modal.active{display:flex;}
+.letter{
+  background:#fff;
+  padding:25px;
+  border-radius:20px;
+  width:90%;
+  max-width:420px;
+  text-align:left;
+  animation:pop .6s;
+}
+.letter h2{font-family:'Playfair Display';margin-bottom:10px;}
+.letter p{line-height:1.6;font-size:.95rem;}
+.signature{text-align:right;font-weight:600;margin-top:15px;}
+.close{text-align:center;margin-top:10px;color:#ff5a7a;cursor:pointer;}
 
-    body{
-      background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      overflow-x:hidden;
-    }
+.music-btn{
+  position:fixed;top:15px;right:15px;
+  background:#fff;border-radius:50%;
+  width:45px;height:45px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+}
 
-    .container{
-      width:100%;
-      padding:20px;
-    }
+.whatsapp{
+  position:fixed;
+  bottom:20px;right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+}
 
-    /* Welcome */
-    .welcome{
-      font-family:'Playfair Display', serif;
-      font-size:2.2rem;
-      color:#fff;
-      margin-bottom:30px;
-      animation:fadeIn 2s ease;
-    }
+.heart{
+  position:fixed;
+  color:#ff4d6d;
+  animation:floatUp 4s linear forwards;
+  font-size:20px;
+}
 
-    /* Gifts */
-    .gifts{
-      display:flex;
-      justify-content:center;
-      gap:30px;
-      margin-top:20px;
-    }
+.memory-img{
+  width:100%;
+  border-radius:15px;
+  margin:10px 0;
+}
 
-    .gift{
-      width:120px;
-      height:120px;
-      background:#fff;
-      border-radius:20px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:3rem;
-      cursor:pointer;
-      box-shadow:0 15px 30px rgba(0,0,0,0.2);
-      animation:float 3s ease-in-out infinite;
-      transition:transform 0.3s;
-    }
-
-    .gift:hover{
-      transform:scale(1.1);
-    }
-
-    /* Modal */
-    .modal{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.7);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:1000;
-    }
-
-    .modal.active{
-      display:flex;
-    }
-
-    .letter{
-      background:#fff;
-      width:90%;
-      max-width:420px;
-      padding:25px;
-      border-radius:20px;
-      text-align:left;
-      animation:pop 0.6s ease;
-    }
-
-    .letter h2{
-      font-family:'Playfair Display', serif;
-      margin-bottom:10px;
-    }
-
-    .letter p{
-      font-size:0.95rem;
-      line-height:1.6;
-      margin-bottom:15px;
-    }
-
-    .signature{
-      text-align:right;
-      font-weight:600;
-    }
-
-    .close{
-      text-align:center;
-      margin-top:10px;
-      color:#ff5a7a;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    /* Animations */
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    @keyframes fadeIn{
-      from{opacity:0; transform:translateY(20px)}
-      to{opacity:1; transform:translateY(0)}
-    }
-
-    @keyframes pop{
-      from{transform:scale(0.7); opacity:0}
-      to{transform:scale(1); opacity:1}
-    }
-  </style>
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;}}
+@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes floatUp{
+  from{bottom:-10px;opacity:1}
+  to{bottom:100%;opacity:0}
+}
+</style>
 </head>
+
 <body>
 
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="music-btn" onclick="toggleMusic()">🎶</div>
+
 <div class="container">
-  <div class="welcome">
-    Welcome Aaaalaaabuuu 💋
-  </div>
+  <div class="welcome">Welcome Aaaalaaabuuu 💋</div>
 
   <div class="gifts">
-    <div class="gift" onclick="openLetter(1)">🎁</div>
-    <div class="gift" onclick="openLetter(2)">🎁</div>
+    <div class="gift" onclick="openGift(1)">🎁</div>
+    <div class="gift" onclick="openGift(2)">🎁</div>
+    <div class="gift" onclick="openGift(3)">💝</div>
   </div>
 </div>
 
-<!-- Modal -->
 <div class="modal" id="modal">
-  <div class="letter" id="letterContent"></div>
+  <div class="letter" id="content"></div>
 </div>
 
+<a class="whatsapp" href="https://wa.me/?text=I loved your surprise ❤️" target="_blank">
+💬 Message Me
+</a>
+
 <script>
-  function openLetter(type){
-    const modal = document.getElementById("modal");
-    const content = document.getElementById("letterContent");
+const modal=document.getElementById("modal");
+const content=document.getElementById("content");
+const music=document.getElementById("bgMusic");
 
-    if(type === 1){
-      content.innerHTML = `
-        <h2>Ente priyapetta Alabushin 💖</h2>
-        <p>
-          enthaann areela anne kanaan nalla poothi aavn  
-          inte ponnareee... 💕  
-          <br><br>
-          ethree aan eenonnum paranj areykaan aavnilla  
-          nalla miss avn nnd inte kaijusneeee 😘  
-          <br><br>
-          LOVE YOU SOOOOOOO MUCCCHHH  
-          INTEEEEE QALBUSHEEEEEEEE 💋  
-          <br><br>
-          MMMMMWWWWWAAAAAAHHHHHH 😘
-        </p>
-        <div class="signature">
-          Ennn Kaijunte Swantham<br>
-          JUNU ennaa AALABUSH 😉
-        </div>
-        <div class="close" onclick="closeModal()">Close</div>
-      `;
-    } else {
-      content.innerHTML = `
-        <h2>Surprise Two 🎉</h2>
-        <p>
-          Ee gift ninakku vendi maatram 😍  
-          ente ellaa happinessum nee aan 💝  
-          <br><br>
-          Forever & Always 💞
-        </p>
-        <div class="signature">
-          With Love ❤️<br>Junu
-        </div>
-        <div class="close" onclick="closeModal()">Close</div>
-      `;
-    }
+function toggleMusic(){
+  music.paused?music.play():music.pause();
+}
 
-    modal.classList.add("active");
+function heartBlast(){
+  for(let i=0;i<15;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4000);
   }
+}
 
-  function closeModal(){
-    document.getElementById("modal").classList.remove("active");
+function openGift(n){
+  heartBlast();
+  if(n===1){
+    content.innerHTML=`
+    <h2>Ente priyapetta Alabushin 💖</h2>
+    <p>
+    enthaann areela anne kanaan nalla poothi aavn inte ponnareee 💕<br><br>
+    nalla miss avn nnd inte kaijusneeee 😘<br><br>
+    LOVE YOU SOOOOO MUCCCHHH INTEEEEE QALBUSHEEEEE 💋
+    </p>
+    <div class="signature">Ennn Kaijunte Swantham<br>JUNU 😘</div>
+    <div class="close" onclick="closeModal()">Close</div>`;
   }
+  else if(n===2){
+    content.innerHTML=`
+    <h2>Forever 💞</h2>
+    <p>nee ente ellam aanu 🫶<br>Always with you 💖</p>
+    <div class="signature">Junu</div>
+    <div class="close" onclick="closeModal()">Close</div>`;
+  }
+  else{
+    content.innerHTML=`
+    <h2>Our Memories 📸</h2>
+    <img src="https://via.placeholder.com/350x220" class="memory-img">
+    <p>Ee moments ennum ente heart-il 💕</p>
+    <div class="close" onclick="closeModal()">Close</div>`;
+  }
+  modal.classList.add("active");
+}
+
+function closeModal(){
+  modal.classList.remove("active");
+}
 </script>
 
 </body>
