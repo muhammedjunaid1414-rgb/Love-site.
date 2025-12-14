@@ -1,185 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Love 💝</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Love 💝</title>
 
-<style>
-*{box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
-body{
-  margin:0;
-  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-.center{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px;
-}
-h1{
-  color:white;
-  font-size:2.4rem;
-  animation:fadeIn 2s ease;
-}
-.gifts{
-  display:flex;
-  gap:40px;
-  margin-top:50px;
-}
-.gift{
-  width:120px;
-  height:120px;
-  background:#ff4d6d;
-  border-radius:16px;
-  position:relative;
-  cursor:pointer;
-  animation:float 3s ease-in-out infinite;
-}
-.gift::before{
-  content:'';
-  position:absolute;
-  width:20px;
-  height:120px;
-  background:white;
-  left:50%;
-  transform:translateX(-50%);
-}
-.gift::after{
-  content:'';
-  position:absolute;
-  width:120px;
-  height:20px;
-  background:white;
-  top:50%;
-  transform:translateY(-50%);
-}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-.letter{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:10;
-}
-.paper{
-  background:#fffdf5;
-  width:min(700px,90%);
-  padding:30px;
-  border-radius:12px;
-  animation:pop .9s cubic-bezier(.17,.67,.4,1.2);
-}
-.close{
-  float:right;
-  cursor:pointer;
-  font-size:18px;
-}
-.signature{
-  text-align:right;
-  margin-top:30px;
-  font-weight:bold;
-}
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+    }
 
-.confetti{
-  position:fixed;
-  top:-20px;
-  width:10px;
-  height:14px;
-  animation:fall 3s linear forwards;
-}
+    body{
+      background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow-x:hidden;
+    }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px);}
-  to{opacity:1;}
-}
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-}
-@keyframes pop{
-  0%{transform:scale(.3);opacity:0;}
-  60%{transform:scale(1.05);}
-  100%{transform:scale(1);}
-}
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg);}
-}
-</style>
+    .container{
+      width:100%;
+      padding:20px;
+    }
+
+    /* Welcome */
+    .welcome{
+      font-family:'Playfair Display', serif;
+      font-size:2.2rem;
+      color:#fff;
+      margin-bottom:30px;
+      animation:fadeIn 2s ease;
+    }
+
+    /* Gifts */
+    .gifts{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      margin-top:20px;
+    }
+
+    .gift{
+      width:120px;
+      height:120px;
+      background:#fff;
+      border-radius:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:3rem;
+      cursor:pointer;
+      box-shadow:0 15px 30px rgba(0,0,0,0.2);
+      animation:float 3s ease-in-out infinite;
+      transition:transform 0.3s;
+    }
+
+    .gift:hover{
+      transform:scale(1.1);
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+    }
+
+    .modal.active{
+      display:flex;
+    }
+
+    .letter{
+      background:#fff;
+      width:90%;
+      max-width:420px;
+      padding:25px;
+      border-radius:20px;
+      text-align:left;
+      animation:pop 0.6s ease;
+    }
+
+    .letter h2{
+      font-family:'Playfair Display', serif;
+      margin-bottom:10px;
+    }
+
+    .letter p{
+      font-size:0.95rem;
+      line-height:1.6;
+      margin-bottom:15px;
+    }
+
+    .signature{
+      text-align:right;
+      font-weight:600;
+    }
+
+    .close{
+      text-align:center;
+      margin-top:10px;
+      color:#ff5a7a;
+      cursor:pointer;
+      font-weight:600;
+    }
+
+    /* Animations */
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0; transform:translateY(20px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    @keyframes pop{
+      from{transform:scale(0.7); opacity:0}
+      to{transform:scale(1); opacity:1}
+    }
+  </style>
 </head>
-
 <body>
-<div class="center">
-  <h1>Welcome Aaaalaaabuuu 😘</h1>
+
+<div class="container">
+  <div class="welcome">
+    Welcome Aaaalaaabuuu 💋
+  </div>
 
   <div class="gifts">
-    <div class="gift" onclick="openLetter('first')"></div>
-    <div class="gift" onclick="openLetter('second')"></div>
+    <div class="gift" onclick="openLetter(1)">🎁</div>
+    <div class="gift" onclick="openLetter(2)">🎁</div>
   </div>
 </div>
 
-<div class="letter" id="letter">
-  <div class="paper" id="paper">
-    <span class="close" onclick="closeLetter()">✖</span>
-    <h2 id="title"></h2>
-    <p id="content"></p>
-    <div class="signature" id="sign"></div>
-  </div>
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="letter" id="letterContent"></div>
 </div>
 
 <script>
-function openLetter(type){
-  let title=document.getElementById("title");
-  let content=document.getElementById("content");
-  let sign=document.getElementById("sign");
+  function openLetter(type){
+    const modal = document.getElementById("modal");
+    const content = document.getElementById("letterContent");
 
-  if(type==="first"){
-    title.innerText="Ente priypetta Alabushin.........";
-    content.innerText=
-`enthaann areela anne kanaan nalla poothi aavn inte ponnareee......
-ethree aan eenonnum paranjj areykaan aavnilla nalla miss avn nnd inte kaijusneeee.......
+    if(type === 1){
+      content.innerHTML = `
+        <h2>Ente priyapetta Alabushin 💖</h2>
+        <p>
+          enthaann areela anne kanaan nalla poothi aavn  
+          inte ponnareee... 💕  
+          <br><br>
+          ethree aan eenonnum paranj areykaan aavnilla  
+          nalla miss avn nnd inte kaijusneeee 😘  
+          <br><br>
+          LOVE YOU SOOOOOOO MUCCCHHH  
+          INTEEEEE QALBUSHEEEEEEEE 💋  
+          <br><br>
+          MMMMMWWWWWAAAAAAHHHHHH 😘
+        </p>
+        <div class="signature">
+          Ennn Kaijunte Swantham<br>
+          JUNU ennaa AALABUSH 😉
+        </div>
+        <div class="close" onclick="closeModal()">Close</div>
+      `;
+    } else {
+      content.innerHTML = `
+        <h2>Surprise Two 🎉</h2>
+        <p>
+          Ee gift ninakku vendi maatram 😍  
+          ente ellaa happinessum nee aan 💝  
+          <br><br>
+          Forever & Always 💞
+        </p>
+        <div class="signature">
+          With Love ❤️<br>Junu
+        </div>
+        <div class="close" onclick="closeModal()">Close</div>
+      `;
+    }
 
-LOVE YOU SOOOOOOO MUCCCHHH INTEEEEE QALBUSHEEEEEEEE...........
-MMMMMWWWWWAAAAAAHHHHHH.... 😘`;
-    sign.innerText="Ennn Kaijunte Swantham JUNU ennaa AALABUSH ;)";
-  }else{
-    title.innerText="My Forever Promise 💖";
-    content.innerText=
-`Ee giftil letter alla...
-Ee giftil ente hridayam aanu ❤️
-
-Nee chirikkumbo ente lokam bright aavum,
-Nee karayumbo ente manass heavy aavum.
-
-Nee undenkil mathi,
-Baakki ellam njan adjust cheytholam 😌
-
-Forever + Always = Nammal 💑`;
-    sign.innerText="Always yours — JUNU 💝";
+    modal.classList.add("active");
   }
 
-  document.getElementById("letter").style.display="flex";
-  for(let i=0;i<120;i++)confetti();
-}
-
-function closeLetter(){
-  document.getElementById("letter").style.display="none";
-  document.querySelectorAll(".confetti").forEach(c=>c.remove());
-}
-
-function confetti(){
-  let c=document.createElement("div");
-  c.className="confetti";
-  c.style.left=Math.random()*100+"vw";
-  c.style.background=`hsl(${Math.random()*360},100%,50%)`;
-  document.body.appendChild(c);
-  setTimeout(()=>c.remove(),5000);
-}
+  function closeModal(){
+    document.getElementById("modal").classList.remove("active");
+  }
 </script>
+
 </body>
 </html>
